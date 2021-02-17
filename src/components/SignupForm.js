@@ -1,3 +1,5 @@
+import { useAuth } from '../contexts/AuthContext';
+
 import { AiFillFacebook } from 'react-icons/ai';
 
 import {
@@ -16,6 +18,10 @@ import InputField from './InputField';
 import Button from './Button';
 
 function SignUp() {
+  const { signup } = useAuth();
+
+  const handleSignup = (e) => {};
+
   return (
     <AuthContainer>
       <LogoContainer>
@@ -50,11 +56,11 @@ function SignUp() {
         labelText="Full Name"
       />
 
-      <InputField
+      {/* <InputField
         inputPlaceholder="Username"
         inputType="text"
         labelText="Username"
-      />
+      /> */}
 
       <InputField
         inputPlaceholder="Password"

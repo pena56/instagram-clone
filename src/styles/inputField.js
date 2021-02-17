@@ -58,6 +58,6 @@ export const Field = styled.input`
   }
 
   &:focus {
-    border: thin solid #767676;
+    border: thin solid #8e8e8e;
   }
 `;
