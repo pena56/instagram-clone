@@ -16,6 +16,12 @@ export const AuthContainer = styled(ParentContainer)`
   }
 `;
 
+export const AuthForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
 export const AuthResetContainer = styled(AuthContainer)`
   margin-top: 108px;
   width: 400px;

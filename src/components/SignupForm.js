@@ -2,6 +2,7 @@ import { AiFillFacebook } from 'react-icons/ai';
 
 import {
   AuthContainer,
+  AuthForm,
   LogoContainer,
   Logo,
   Divider,
@@ -38,31 +39,33 @@ function SignUp() {
         <Line />
       </Divider>
 
-      <InputField
-        inputPlaceholder="Mobile Number or Email"
-        inputType="email"
-        labelText="Mobile Number or Email"
-      />
+      <AuthForm>
+        <InputField
+          inputPlaceholder="Mobile Number or Email"
+          inputType="email"
+          labelText="Mobile Number or Email"
+        />
 
-      <InputField
-        inputPlaceholder="Full Name"
-        inputType="text"
-        labelText="Full Name"
-      />
+        <InputField
+          inputPlaceholder="Full Name"
+          inputType="text"
+          labelText="Full Name"
+        />
 
-      <InputField
-        inputPlaceholder="Username"
-        inputType="text"
-        labelText="Username"
-      />
+        {/* <InputField
+          inputPlaceholder="Username"
+          inputType="text"
+          labelText="Username"
+        /> */}
 
-      <InputField
-        inputPlaceholder="Password"
-        inputType="password"
-        labelText="Password"
-      />
+        <InputField
+          inputPlaceholder="Password"
+          inputType="password"
+          labelText="Password"
+        />
 
-      <Button disabled={true} color="#0095F6" text="Sign up" />
+        <Button color="#0095F6" text="Sign up" />
+      </AuthForm>
 
       <TermsText>
         By signing up, you agree to our Terms , Data Policy and Cookies Policy .
