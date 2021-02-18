@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import {
   AuthContainer,
-  LogoContainer,
   AuthForm,
+  AuthError,
+  LogoContainer,
   Logo,
   Divider,
   Text,
@@ -30,15 +31,17 @@ function SignIn() {
           inputPlaceholder="Mobile Number or Email"
           inputType="email"
           labelText="Mobile Number or Email"
+          inputRequired={true}
         />
 
         <InputField
           inputPlaceholder="Password"
           inputType="password"
           labelText="Password"
+          inputRequired={true}
         />
 
-        <Button color="#0095F6" text="Log In" />
+        <Button type="submit" color="#0095F6" text="Log In" />
       </AuthForm>
 
       <Divider>

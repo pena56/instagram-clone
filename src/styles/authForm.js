@@ -152,3 +152,25 @@ export const LoginButton = styled.div`
   left: 0;
   bottom: 0;
 `;
+
+export const AuthError = styled.p`
+  text-align: center;
+  font-size: 0.8rem;
+  color: #ed4956;
+  margin: 10px 0;
+`;
+
+export const AuthSuccess = styled(AuthError)`
+  color: #2ed339;
+`;
+
+export const LoaderContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-sizing: border-box;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

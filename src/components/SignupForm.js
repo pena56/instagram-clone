@@ -3,6 +3,7 @@ import { AiFillFacebook } from 'react-icons/ai';
 import {
   AuthContainer,
   AuthForm,
+  AuthError,
   LogoContainer,
   Logo,
   Divider,
@@ -44,12 +45,14 @@ function SignUp() {
           inputPlaceholder="Mobile Number or Email"
           inputType="email"
           labelText="Mobile Number or Email"
+          inputRequired={true}
         />
 
         <InputField
           inputPlaceholder="Full Name"
           inputType="text"
           labelText="Full Name"
+          inputRequired={true}
         />
 
         {/* <InputField
@@ -62,9 +65,10 @@ function SignUp() {
           inputPlaceholder="Password"
           inputType="password"
           labelText="Password"
+          inputRequired={true}
         />
 
-        <Button color="#0095F6" text="Sign up" />
+        <Button type="submit" color="#0095F6" text="Sign up" />
       </AuthForm>
 
       <TermsText>

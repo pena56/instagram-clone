@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { InputFieldContainer } from './inputField';
 
 export const HeaderContainer = styled.nav`
-  width: 100%;
+  width: 100vw;
   box-sizing: border-box;
   position: fixed;
   top: 0;

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 import {
   AuthResetContainer,
+  AuthForm,
+  AuthError,
+  AuthSuccess,
   LockIconContainer,
   ResetText,
   ResetDesc,
@@ -28,12 +31,15 @@ function ResetPasswordForm() {
         Enter your email, phone, or username and we'll send you a link to get
         back into your account.
       </ResetDesc>
-      <InputField
-        inputType="text"
-        inputPlaceholder="Email, Phone, or Username"
-        labelText="Email, Phone, or Username"
-      />
-      <Button text="Send Login Link" color="#0095F6" />
+      <AuthForm>
+        <InputField
+          inputType="text"
+          inputPlaceholder="Email, Phone, or Username"
+          labelText="Email, Phone, or Username"
+          inputRequired={true}
+        />
+        <Button text="Send Login Link" color="#0095F6" />
+      </AuthForm>
 
       <Divider>
         <Line />
