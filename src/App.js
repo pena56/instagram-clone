@@ -15,10 +15,10 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={SignIn} />
+          <Route path="/" exact component={Profile} />
           <Route path="/accounts/emailsignup" component={SignUp} />
           <Route path="/accounts/password/reset" component={ResetPassword} />
-          <Route path="/:username" component={Profile} />
+          <Route path="/accounts/signin" component={SignIn} />
         </Switch>
       </BrowserRouter>
     </ParentContainer>

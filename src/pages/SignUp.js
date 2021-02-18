@@ -10,7 +10,7 @@ function SignUp() {
     <AuthPageContainer>
       <SignupForm />
 
-      <AltAuth authLink="/" authText="Log in" />
+      <AltAuth authLink="/accounts/signin" authText="Log in" />
 
       <GetApp />
 

@@ -22,7 +22,7 @@ function ProfileBanner() {
 
       <ProfileDetails>
         <ProfileMeta>
-          <Username>brake_emi</Username>
+          <Username>Moses Ogbopina</Username>
 
           <EditButton>Edit Profile</EditButton>
 
@@ -39,7 +39,7 @@ function ProfileBanner() {
             <ActivityNumber>150</ActivityNumber> following
           </ActivityText>
         </Activity>
-        <DisplayName>Moses Ogbopina</DisplayName>
+        {/* <DisplayName>Moses Ogbopina</DisplayName> */}
       </ProfileDetails>
     </BannerContainer>
   );
