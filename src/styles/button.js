@@ -14,6 +14,8 @@ export const ButtonContainer = styled.button`
   outline: none;
   margin: 10px 0;
   cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
 
   &:disabled {
     opacity: 0.3;

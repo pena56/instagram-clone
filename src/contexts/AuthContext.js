@@ -13,22 +13,53 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const signup = (email, password, fullName) => {
-    return auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((ref) => {
-        ref.user.updateProfile({
-          displayName: fullName,
-        });
-      })
-      .catch((error) => console.error(error));
+    let promise = new Promise(function (resolve, reject) {
+      auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((ref) => {
+          ref.user.updateProfile({
+            displayName: fullName,
+          });
+          resolve(ref);
+        })
+        .catch((error) => reject(error));
+    });
+
+    return promise;
   };
 
   const signin = (email, password) => {
-    return auth.signInWithEmailAndPassword(email, password);
+    let promise = new Promise(function (resolve, reject) {
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then((ref) => {
+          resolve(ref);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+
+    return promise;
   };
 
-  const logout = () => {
+  const signout = () => {
     return auth.signOut();
+  };
+
+  const passwordReset = (email) => {
+    let promise = new Promise(function (resolve, reject) {
+      auth
+        .sendPasswordResetEmail(email)
+        .then(() => {
+          resolve(`Password Reset Email sent to ${email}`);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+
+    return promise;
   };
 
   useEffect(() => {
@@ -45,7 +76,8 @@ export function AuthProvider({ children }) {
     currentUser,
     signup,
     signin,
-    logout,
+    signout,
+    passwordReset,
   };
 
   return (

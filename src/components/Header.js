@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { IoHomeOutline } from 'react-icons/io5';
 import { BsInbox } from 'react-icons/bs';
@@ -10,6 +10,8 @@ import { IoBookmarkOutline } from 'react-icons/io5';
 import { RiSettings3Line } from 'react-icons/ri';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md';
+
+import { useAuth } from '../contexts/AuthContext';
 
 import logo from '../images/logo.svg';
 import blankProfile from '../images/BlankImage.jpg';
@@ -33,6 +35,16 @@ import {
 
 function Header() {
   const [showDrawer, setShowDrawer] = useState(false);
+
+  const history = useHistory();
+
+  const { signout, currentUser } = useAuth();
+
+  const handleSignout = () => {
+    signout();
+    setShowDrawer((prev) => !prev);
+    history.push('/');
+  };
 
   return (
     <HeaderContainer>
@@ -77,7 +89,7 @@ function Header() {
             <RiSettings3Line fontSize="1.2rem" />
             <DropdownText>Settings</DropdownText>
           </DropdownItem>
-          <LogoutLink>
+          <LogoutLink onClick={handleSignout}>
             <DropdownText>Logout</DropdownText>
           </LogoutLink>
         </DropdownMenu>

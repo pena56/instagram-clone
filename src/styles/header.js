@@ -38,6 +38,8 @@ export const SearchFieldContainer = styled(InputFieldContainer)`
   position: relative;
   justify-content: center;
   align-items: center;
+  border: thin solid #dbdbdb;
+  border-radius: 3px;
 
   @media (max-width: 450px) {
     display: none;

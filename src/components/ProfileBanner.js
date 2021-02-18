@@ -1,5 +1,7 @@
 import { RiSettings3Line } from 'react-icons/ri';
 
+import { useAuth } from '../contexts/AuthContext';
+
 import {
   BannerContainer,
   ProfileImage,
@@ -16,17 +18,15 @@ import {
 import blankProfile from '../images/BlankImage.jpg';
 
 function ProfileBanner() {
+  const { currentUser } = useAuth();
+
   return (
     <BannerContainer>
-      {/* profile image */}
       <ProfileImage src={blankProfile} alt="profile" />
-      {/* profile details container */}
       <ProfileDetails>
         <ProfileMeta>
-          <Username>brake_emi</Username>
-          {/* edit button */}
+          <Username>{currentUser.displayName}</Username>
           <EditButton>Edit Profile</EditButton>
-          {/* settings icon */}
           <RiSettings3Line cursor="pointer" fontSize="1.5rem" />
         </ProfileMeta>
         <Activity>
@@ -40,7 +40,7 @@ function ProfileBanner() {
             <ActivityNumber>150</ActivityNumber> following
           </ActivityText>
         </Activity>
-        <DisplayName>Moses Ogbopina</DisplayName>
+        {/* <DisplayName>Moses Ogbopina</DisplayName> */}
       </ProfileDetails>
     </BannerContainer>
   );

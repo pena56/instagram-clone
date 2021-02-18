@@ -7,12 +7,8 @@ import { AuthPageContainer } from '../styles/authForm';
 function ResetPassword() {
   return (
     <AuthPageContainer>
-      {/* Header */}
       <AltHeader />
-      {/* ResetForm */}
       <ResetPasswordForm />
-      {/* Back to Login */}
-      {/* footer */}
       <Footer />
     </AuthPageContainer>
   );

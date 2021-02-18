@@ -1,8 +1,13 @@
+import { useState, useRef } from 'react';
+
 import { AiFillFacebook } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
+import { useAuth } from '../contexts/AuthContext';
 
 import {
   AuthContainer,
+  AuthForm,
   LogoContainer,
   Logo,
   Divider,
@@ -11,6 +16,7 @@ import {
   SocialLoginContainer,
   SocialLoginText,
   ForgotPassword,
+  AuthError,
 } from '../styles/authForm';
 import logo from '../images/logo.svg';
 
@@ -18,25 +24,65 @@ import InputField from './InputField';
 import Button from './Button';
 
 function SignIn() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const history = useHistory();
+
+  const { signin } = useAuth();
+
+  const handleSignin = (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    signin(email, password)
+      .then((ref) => {
+        setLoading(false);
+        history.push('/');
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
+  };
+
   return (
     <AuthContainer>
       <LogoContainer>
         <Logo src={logo} alt="logo" />
       </LogoContainer>
 
-      <InputField
-        inputPlaceholder="Phone number, username, or email"
-        inputType="text"
-        labelText="Phone number, username, or email"
-      />
+      <AuthForm onSubmit={(e) => handleSignin(e)}>
+        <InputField
+          inputPlaceholder="Mobile Number or Email"
+          inputType="email"
+          labelText="Mobile Number or Email"
+          inputRef={emailRef}
+          inputRequired={true}
+        />
 
-      <InputField
-        inputPlaceholder="Password"
-        inputType="password"
-        labelText="Password"
-      />
+        <InputField
+          inputPlaceholder="Password"
+          inputType="password"
+          labelText="Password"
+          inputRef={passwordRef}
+          inputRequired={true}
+        />
 
-      <Button disabled={true} color="#0095F6" text="Log In" />
+        <Button
+          type="submit"
+          disabled={loading}
+          color="#0095F6"
+          text="Log In"
+        />
+
+        {error && <AuthError>{error}</AuthError>}
+      </AuthForm>
 
       <Divider>
         <Line />
