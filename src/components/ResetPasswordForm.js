@@ -26,9 +26,7 @@ import Button from './Button';
 
 function ResetPasswordForm() {
   const [error, setError] = useState('');
-  const [message, setMessage] = useState(
-    'this is what a success message looks like'
-  );
+  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const { passwordReset } = useAuth();
 
@@ -85,7 +83,7 @@ function ResetPasswordForm() {
 
       <LoginButton>
         <LoginLink>
-          <Link to="/">Back To Login</Link>
+          <Link to="/accounts/signin">Back To Login</Link>
         </LoginLink>
       </LoginButton>
     </AuthResetContainer>
