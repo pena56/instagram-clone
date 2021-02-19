@@ -38,12 +38,12 @@ function Header() {
 
   const history = useHistory();
 
-  const { signout, currentUser } = useAuth();
+  const { signout } = useAuth();
 
   const handleSignout = () => {
     signout();
     setShowDrawer((prev) => !prev);
-    history.push('/');
+    history.push('/accounts/signin');
   };
 
   return (
