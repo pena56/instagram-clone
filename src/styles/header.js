@@ -169,3 +169,22 @@ export const DropdownText = styled.p`
 export const LogoutLink = styled(DropdownItem)`
   border-top: thin solid #dbdbdb;
 `;
+
+export const HeaderLink = styled.div`
+  padding: 0 10px;
+  border-radius: 3px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: transparent;
+  color: #0095f6;
+
+  &.primary {
+    background: #0095f6;
+    color: #ffffff;
+    font-weight: 500;
+  }
+`;

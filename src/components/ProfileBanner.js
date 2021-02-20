@@ -1,7 +1,5 @@
 import { RiSettings3Line } from 'react-icons/ri';
 
-import { useAuth } from '../contexts/AuthContext';
-
 import {
   BannerContainer,
   ProfileImage,
@@ -9,25 +7,36 @@ import {
   ProfileMeta,
   Activity,
   DisplayName,
-  EditButton,
+  ProfileButton,
   Username,
   ActivityNumber,
   ActivityText,
 } from '../styles/profile';
 
+import { useAuth } from '../contexts/AuthContext';
+
 import blankProfile from '../images/BlankImage.jpg';
 
-function ProfileBanner() {
+function ProfileBanner({ userProfile }) {
   const { currentUser } = useAuth();
 
   return (
     <BannerContainer>
-      <ProfileImage src={blankProfile} alt="profile" />
+      <ProfileImage
+        src={userProfile.photoURL ? userProfile.photoURL : blankProfile}
+        alt="profile"
+      />
       <ProfileDetails>
         <ProfileMeta>
-          <Username>{currentUser.displayName}</Username>
-          <EditButton>Edit Profile</EditButton>
-          <RiSettings3Line cursor="pointer" fontSize="1.5rem" />
+          <Username>{userProfile.username}</Username>
+          {currentUser ? (
+            <>
+              <ProfileButton>Edit Profile</ProfileButton>
+              <RiSettings3Line cursor="pointer" fontSize="1.5rem" />
+            </>
+          ) : (
+            <ProfileButton className="follow-btn">Follow</ProfileButton>
+          )}
         </ProfileMeta>
         <Activity>
           <ActivityText>
@@ -40,7 +49,7 @@ function ProfileBanner() {
             <ActivityNumber>150</ActivityNumber> following
           </ActivityText>
         </Activity>
-        {/* <DisplayName>Moses Ogbopina</DisplayName> */}
+        <DisplayName>{userProfile.fullName}</DisplayName>
       </ProfileDetails>
     </BannerContainer>
   );

@@ -18,7 +18,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Switch>
-            <Route path="/" exact component={Profile} />
+            <Route path="/:uid" exact component={Profile} />
             <Route path="/accounts/emailsignup" component={SignUp} />
             <Route path="/accounts/password/reset" component={ResetPassword} />
             <Route path="/accounts/signin" component={SignIn} />

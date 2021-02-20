@@ -23,13 +23,15 @@ import Button from './Button';
 
 function SignUp() {
   const [loading, setLoading] = useState(false);
+  const [fbLoading, setFbLoading] = useState(false);
   const [error, setError] = useState('');
 
   const emailRef = useRef();
   const fullNameRef = useRef();
   const passwordRef = useRef();
+  const userNameRef = useRef();
 
-  const { signup } = useAuth();
+  const { signup, facebookLogin } = useAuth();
 
   const history = useHistory();
 
@@ -39,15 +41,30 @@ function SignUp() {
     setLoading(true);
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    const username = userNameRef.current.value;
     const fullName = fullNameRef.current.value;
-    signup(email, password, fullName)
-      .then((ref) => {
+    signup(email, password, fullName, username)
+      .then((id) => {
         setLoading(false);
-        history.push('/');
+        history.push(`/${id}`);
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
+      });
+  };
+
+  const handleFacebookLogin = () => {
+    setError('');
+    setFbLoading(true);
+    facebookLogin()
+      .then((id) => {
+        setFbLoading(false);
+        history.push(`/${id}`);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setFbLoading(false);
       });
   };
 
@@ -65,6 +82,8 @@ function SignUp() {
         color="#0095F6"
         icon={<AiFillFacebook fontSize="1.1rem" color="#ffffff" />}
         text="Log in with Facebook"
+        callback={handleFacebookLogin}
+        disabled={fbLoading}
       />
 
       <Divider>
@@ -90,11 +109,13 @@ function SignUp() {
           inputRef={fullNameRef}
         />
 
-        {/* <InputField
+        <InputField
           inputPlaceholder="Username"
           inputType="text"
           labelText="Username"
-        /> */}
+          inputRequired={true}
+          inputRef={userNameRef}
+        />
 
         <InputField
           inputPlaceholder="Password"

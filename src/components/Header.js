@@ -31,6 +31,7 @@ import {
   SearchIconContainer,
   CancelIconContainer,
   LogoutLink,
+  HeaderLink,
 } from '../styles/header';
 
 function Header() {
@@ -38,12 +39,19 @@ function Header() {
 
   const history = useHistory();
 
-  const { signout } = useAuth();
+  const { signout, currentUser } = useAuth();
 
   const handleSignout = () => {
     signout();
     setShowDrawer((prev) => !prev);
     history.push('/accounts/signin');
+  };
+
+  const showProfile = () => {
+    if (currentUser) {
+      setShowDrawer((prev) => !prev);
+      history.push(`/${currentUser.displayName}`);
+    }
   };
 
   return (
@@ -64,35 +72,48 @@ function Header() {
         </CancelIconContainer>
       </SearchFieldContainer>
       <HeaderIcons>
-        <IoHomeOutline fontSize="1.5rem" cursor="pointer" />
-        <BsInbox fontSize="1.5rem" cursor="pointer" />
-        <IoCompassOutline fontSize="1.5rem" cursor="pointer" />
-        <IoHeartOutline fontSize="1.5rem" cursor="pointer" />
-        <HeaderProfileContainer
-          clicked={showDrawer}
-          onClick={() => setShowDrawer((prev) => !prev)}
-        >
-          <HeaderProfileImage src={blankProfile} alt="profile" />
-        </HeaderProfileContainer>
+        {currentUser ? (
+          <>
+            <IoHomeOutline fontSize="1.5rem" cursor="pointer" />
+            <BsInbox fontSize="1.5rem" cursor="pointer" />
+            <IoCompassOutline fontSize="1.5rem" cursor="pointer" />
+            <IoHeartOutline fontSize="1.5rem" cursor="pointer" />
+            <HeaderProfileContainer
+              clicked={showDrawer}
+              onClick={() => setShowDrawer((prev) => !prev)}
+            >
+              <HeaderProfileImage src={blankProfile} alt="profile" />
+            </HeaderProfileContainer>
 
-        <DropdownMenu show={showDrawer}>
-          <Triangle />
-          <DropdownItem>
-            <CgProfile fontSize="1.2rem" />
-            <DropdownText>Profile</DropdownText>
-          </DropdownItem>
-          <DropdownItem>
-            <IoBookmarkOutline fontSize="1.2rem" />
-            <DropdownText>Saved</DropdownText>
-          </DropdownItem>
-          <DropdownItem>
-            <RiSettings3Line fontSize="1.2rem" />
-            <DropdownText>Settings</DropdownText>
-          </DropdownItem>
-          <LogoutLink onClick={handleSignout}>
-            <DropdownText>Logout</DropdownText>
-          </LogoutLink>
-        </DropdownMenu>
+            <DropdownMenu show={showDrawer}>
+              <Triangle />
+              <DropdownItem onClick={showProfile}>
+                <CgProfile fontSize="1.2rem" />
+                <DropdownText>Profile</DropdownText>
+              </DropdownItem>
+              <DropdownItem>
+                <IoBookmarkOutline fontSize="1.2rem" />
+                <DropdownText>Saved</DropdownText>
+              </DropdownItem>
+              <DropdownItem>
+                <RiSettings3Line fontSize="1.2rem" />
+                <DropdownText>Settings</DropdownText>
+              </DropdownItem>
+              <LogoutLink onClick={handleSignout}>
+                <DropdownText>Logout</DropdownText>
+              </LogoutLink>
+            </DropdownMenu>
+          </>
+        ) : (
+          <>
+            <HeaderLink className="primary">
+              <Link to="/accounts/signin">Log In</Link>
+            </HeaderLink>
+            <HeaderLink>
+              <Link to="/accounts/emailsignup">Sign Up</Link>{' '}
+            </HeaderLink>
+          </>
+        )}
       </HeaderIcons>
     </HeaderContainer>
   );

@@ -5,9 +5,14 @@ import { ButtonContainer, ButtonText } from '../styles/button';
 
 import { LoaderContainer } from '../styles/authForm';
 
-function Button({ text, color, icon, disabled, type }) {
+function Button({ text, color, icon, disabled, type, callback }) {
   return (
-    <ButtonContainer type={type} disabled={disabled} buttonColor={color}>
+    <ButtonContainer
+      onClick={callback}
+      type={type}
+      disabled={disabled}
+      buttonColor={color}
+    >
       {icon && icon}
       {disabled && (
         <LoaderContainer>

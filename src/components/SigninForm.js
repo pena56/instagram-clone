@@ -32,7 +32,7 @@ function SignIn() {
 
   const history = useHistory();
 
-  const { signin } = useAuth();
+  const { signin, facebookLogin } = useAuth();
 
   const handleSignin = (e) => {
     e.preventDefault();
@@ -41,9 +41,23 @@ function SignIn() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     signin(email, password)
+      .then((id) => {
+        setLoading(false);
+        history.push(`/${id}`);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
+  };
+
+  const handleFacebookLogin = () => {
+    setError('');
+    setLoading(true);
+    facebookLogin()
       .then((ref) => {
         setLoading(false);
-        history.push('/');
+        history.push(`/profile/${ref.user.uid}`);
       })
       .catch((error) => {
         setError(error.message);
@@ -92,7 +106,9 @@ function SignIn() {
 
       <SocialLoginContainer>
         <AiFillFacebook fontSize="1.3rem" color="#385185" />
-        <SocialLoginText>Log in with Facebook</SocialLoginText>
+        <SocialLoginText onClick={handleFacebookLogin}>
+          Log in with Facebook
+        </SocialLoginText>
       </SocialLoginContainer>
 
       <ForgotPassword>

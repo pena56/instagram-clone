@@ -38,4 +38,11 @@ export const ParentContainer = styled.div`
   position: relative;
 `;
 
+export const LoaderContainer = styled(ParentContainer)`
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default GlobalStyle;

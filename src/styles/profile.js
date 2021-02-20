@@ -38,7 +38,7 @@ export const ProfileMeta = styled.div`
 `;
 
 export const Activity = styled(ProfileMeta)`
-  gap: 30px;
+  gap: 50px;
 `;
 
 export const DisplayName = styled.p`
@@ -47,11 +47,12 @@ export const DisplayName = styled.p`
 `;
 
 export const Username = styled.p`
-  font-size: 1.8rem;
-  color: #9b9b9b;
+  font-size: 1.7rem;
+  color: #262626;
+  font-weight: 100;
 `;
 
-export const EditButton = styled.button`
+export const ProfileButton = styled.button`
   outline: none;
   padding: 7px;
   border: thin solid #dbdbdb;
@@ -60,15 +61,23 @@ export const EditButton = styled.button`
   cursor: pointer;
   border-radius: 5px;
   font-size: 0.9rem;
+
+  &.follow-btn {
+    border: none;
+    background: #0095f6;
+    color: #ffffff;
+  }
 `;
 
-export const ActivityText = styled(Username)`
+export const ActivityText = styled(DisplayName)`
   font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
 `;
 
 export const ActivityNumber = styled.span`
   color: #262626;
+  font-weight: 700;
 `;
 
 export const ProfilePostContainer = styled.div`
