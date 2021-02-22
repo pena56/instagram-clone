@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect, createContext } from 'react';
 
 import { auth, facebookProvider, db } from '../adapters/firebase';
+import UploadImage from '../adapters/uploadImage';
 
 import { generateUserSlug } from '../utils/generateSlug';
 
@@ -34,6 +35,8 @@ export function AuthProvider({ children }) {
               username,
               photoURL: '',
               bio: '',
+              website: '',
+              phone: '',
             })
             .then(() => {
               resolve(slug);
@@ -105,6 +108,8 @@ export function AuthProvider({ children }) {
                     username: '',
                     photoURL: res.user.photoURL,
                     bio: '',
+                    website: '',
+                    phone: '',
                   })
                   .then(() => {
                     resolve(slug);
@@ -115,6 +120,32 @@ export function AuthProvider({ children }) {
         .catch((error) => {
           reject(error);
         });
+    });
+
+    return promise;
+  };
+
+  const updateProfileImage = (file) => {
+    let promise = new Promise(function (resolve, reject) {
+      UploadImage(file).then((url) => {
+        auth.currentUser
+          .updateProfile({
+            photoURL: url,
+          })
+          .then(() => {
+            db.collection('userProfile')
+              .doc(auth.currentUser.displayName)
+              .update({
+                photoURL: url,
+              })
+              .then(() => {
+                resolve('Profile Image Updated');
+              })
+              .catch((error) => {
+                reject(error);
+              });
+          });
+      });
     });
 
     return promise;
@@ -137,6 +168,7 @@ export function AuthProvider({ children }) {
     signout,
     passwordReset,
     facebookLogin,
+    updateProfileImage,
   };
 
   return (

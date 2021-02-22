@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { IoHomeOutline } from 'react-icons/io5';
@@ -41,6 +41,8 @@ function Header() {
 
   const { signout, currentUser } = useAuth();
 
+  useEffect(() => {}, [currentUser]);
+
   const handleSignout = () => {
     signout();
     setShowDrawer((prev) => !prev);
@@ -82,7 +84,10 @@ function Header() {
               clicked={showDrawer}
               onClick={() => setShowDrawer((prev) => !prev)}
             >
-              <HeaderProfileImage src={blankProfile} alt="profile" />
+              <HeaderProfileImage
+                src={currentUser.photoURL ? currentUser.photoURL : blankProfile}
+                alt="profile"
+              />
             </HeaderProfileContainer>
 
             <DropdownMenu show={showDrawer}>

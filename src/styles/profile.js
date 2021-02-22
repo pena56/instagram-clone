@@ -278,6 +278,7 @@ export const BodyLabel = styled.div`
   display: flex;
   width: 30%;
   justify-content: flex-end;
+  position: relative;
 
   @media (max-width: 450px) {
     width: 100%;
@@ -347,4 +348,28 @@ export const Button = styled(ProfileButton)`
   border: none;
   background: #0095f6;
   color: #ffffff;
+  position: relative;
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+`;
+
+export const ImageLoader = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.3;
+  position: absolute;
+  background: #ffffff;
+  z-index: 5;
+`;
+
+export const Loader = styled(ImageLoader)`
+  border-radius: 0;
 `;

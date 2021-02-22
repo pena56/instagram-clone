@@ -1,6 +1,7 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import UpdateForm from '../components/UpdateForm';
+// import FlashMessage from '../components/FlashMessage';
 
 import {
   ProfileContainer,
@@ -13,6 +14,7 @@ import {
 export default function EditAccount() {
   return (
     <ProfileContainer>
+      {/* <FlashMessage message="Profile updated" /> */}
       <Header />
       <EditContainer>
         <MenuList>

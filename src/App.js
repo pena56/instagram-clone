@@ -9,6 +9,9 @@ import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
 import EditAccount from './pages/EditAccount';
 
+// components
+import PrivateRoute from './components/PrivateRoute';
+
 // styles
 import GlobalStyle, { ParentContainer } from './styles/globalStyle';
 
@@ -23,7 +26,7 @@ function App() {
             <Route path="/accounts/emailsignup/" component={SignUp} />
             <Route path="/accounts/password/reset/" component={ResetPassword} />
             <Route path="/accounts/signin/" component={SignIn} />
-            <Route path="/accounts/edit/" component={EditAccount} />
+            <PrivateRoute path="/accounts/edit/" component={EditAccount} />
           </Switch>
         </AuthProvider>
       </BrowserRouter>

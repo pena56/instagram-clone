@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import {
   BannerContainer,
   ProfileImage,
@@ -30,7 +32,9 @@ function ProfileBanner({ userProfile }) {
           {currentUser ? (
             currentUser.displayName == userProfile.id ? (
               <>
-                <ProfileButton>Edit Profile</ProfileButton>
+                <ProfileButton>
+                  <Link to="/accounts/edit">Edit Profile</Link>
+                </ProfileButton>
               </>
             ) : (
               <>
