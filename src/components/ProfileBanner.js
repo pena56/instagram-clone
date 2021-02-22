@@ -11,6 +11,8 @@ import {
   Username,
   ActivityNumber,
   ActivityText,
+  Bio,
+  Website,
 } from '../styles/profile';
 
 import { useAuth } from '../contexts/AuthContext';
@@ -57,6 +59,12 @@ function ProfileBanner({ userProfile }) {
           </ActivityText>
         </Activity>
         <DisplayName>{userProfile.fullName}</DisplayName>
+        {userProfile.bio && <Bio>{userProfile.bio}</Bio>}
+        {userProfile.website && (
+          <Website target="_blank" href={userProfile.website}>
+            {userProfile.website}
+          </Website>
+        )}
       </ProfileDetails>
     </BannerContainer>
   );

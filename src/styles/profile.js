@@ -30,7 +30,7 @@ export const BannerContainer = styled.div`
     gap: 10px;
     flex-wrap: wrap;
     position: relative;
-    height: 300px;
+    height: 500px;
   }
 `;
 
@@ -50,15 +50,19 @@ export const EditContainer = styled(BannerContainer)`
 `;
 
 export const ProfileImage = styled.img`
-  width: 150px;
-  height: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  min-height: 150px;
   object-fit: cover;
   border-radius: 50%;
   cursor: pointer;
 
   @media (max-width: 450px) {
-    width: 90px;
-    height: 90px;
+    max-width: 90px;
+    min-width: 90px;
+    max-height: 90px;
+    min-height: 90px;
   }
 `;
 
@@ -102,6 +106,7 @@ export const Activity = styled(ProfileMeta)`
     padding: 5px 0;
     border-bottom: thin solid #dbdbdb;
     border-top: thin solid #dbdbdb;
+    margin-top: 20px;
   }
 `;
 
@@ -112,7 +117,24 @@ export const DisplayName = styled.p`
   @media (max-width: 450px) {
     order: 2;
     margin-top: 50px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
+  }
+`;
+
+export const Bio = styled(DisplayName)`
+  font-weight: 500;
+
+  @media (max-width: 450px) {
+    order: 2;
+    margin-top: 5px;
+  }
+`;
+
+export const Website = styled.a`
+  color: #0095f6;
+
+  @media (max-width: 450px) {
+    order: 2;
   }
 `;
 
