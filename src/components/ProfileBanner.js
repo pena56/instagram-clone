@@ -1,5 +1,3 @@
-import { RiSettings3Line } from 'react-icons/ri';
-
 import {
   BannerContainer,
   ProfileImage,
@@ -30,10 +28,15 @@ function ProfileBanner({ userProfile }) {
         <ProfileMeta>
           <Username>{userProfile.username}</Username>
           {currentUser ? (
-            <>
-              <ProfileButton>Edit Profile</ProfileButton>
-              <RiSettings3Line cursor="pointer" fontSize="1.5rem" />
-            </>
+            currentUser.displayName == userProfile.id ? (
+              <>
+                <ProfileButton>Edit Profile</ProfileButton>
+              </>
+            ) : (
+              <>
+                <ProfileButton className="follow-btn">Follow</ProfileButton>
+              </>
+            )
           ) : (
             <ProfileButton className="follow-btn">Follow</ProfileButton>
           )}

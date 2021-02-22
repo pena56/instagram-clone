@@ -86,21 +86,30 @@ export function AuthProvider({ children }) {
         .then((res) => {
           const slug = generateUserSlug(res.user.displayName);
           const dName = res.user.displayName;
-          res.user.updateProfile({
-            displayName: slug,
-          });
           db.collection('userProfile')
-            .doc(slug)
-            .set({
-              id: slug,
-              email: res.user.email,
-              fullName: dName,
-              username: '',
-              photoURL: res.user.photoURL,
-              bio: '',
-            })
-            .then(() => {
-              resolve(slug);
+            .doc(dName)
+            .get()
+            .then((ref) => {
+              if (ref.exists) {
+                resolve(dName);
+              } else {
+                res.user.updateProfile({
+                  displayName: slug,
+                });
+                db.collection('userProfile')
+                  .doc(slug)
+                  .set({
+                    id: slug,
+                    email: res.user.email,
+                    fullName: dName,
+                    username: '',
+                    photoURL: res.user.photoURL,
+                    bio: '',
+                  })
+                  .then(() => {
+                    resolve(slug);
+                  });
+              }
             });
         })
         .catch((error) => {

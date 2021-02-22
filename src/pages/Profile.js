@@ -25,7 +25,7 @@ function Profile({ match }) {
         setError(error.message);
         setLoading(false);
       });
-  }, []);
+  }, [match]);
 
   return (
     <ProfileContainer>

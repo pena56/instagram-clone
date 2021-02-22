@@ -9,6 +9,8 @@ export const AuthContainer = styled(ParentContainer)`
   background: #ffffff;
   align-self: center;
   border: thin solid #dbdbdb;
+  box-sizing: border-box;
+  overflow-x: hidden;
 
   @media (max-width: 450px) {
     border: none;
@@ -29,6 +31,7 @@ export const AuthPageContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  overflow-x: hidden;
 `;
 
 export const AuthForm = styled.form`

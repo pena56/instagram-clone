@@ -55,9 +55,9 @@ function SignIn() {
     setError('');
     setLoading(true);
     facebookLogin()
-      .then((ref) => {
+      .then((id) => {
         setLoading(false);
-        history.push(`/profile/${ref.user.uid}`);
+        history.push(`/${id}`);
       })
       .catch((error) => {
         setError(error.message);
