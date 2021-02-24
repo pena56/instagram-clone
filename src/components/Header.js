@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, NavLink } from 'react-router-dom';
 
-import { IoHomeOutline } from 'react-icons/io5';
+import { IoHomeOutline, IoHomeSharp, IoBookmarkOutline } from 'react-icons/io5';
+import { CgAddR } from 'react-icons/cg';
 import { BsInbox } from 'react-icons/bs';
-import { IoCompassOutline } from 'react-icons/io5';
 import { IoHeartOutline } from 'react-icons/io5';
 import { CgProfile } from 'react-icons/cg';
-import { IoBookmarkOutline } from 'react-icons/io5';
 import { RiSettings3Line } from 'react-icons/ri';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md';
@@ -34,7 +33,7 @@ import {
   HeaderLink,
 } from '../styles/header';
 
-function Header() {
+function Header({ currentPath }) {
   const [showDrawer, setShowDrawer] = useState(false);
 
   const history = useHistory();
@@ -76,12 +75,19 @@ function Header() {
       <HeaderIcons>
         {currentUser ? (
           <>
-            <IoHomeOutline fontSize="1.5rem" cursor="pointer" />
+            <NavLink to="/">
+              {currentPath === '/' ? (
+                <IoHomeSharp fontSize="1.5rem" cursor="pointer" />
+              ) : (
+                <IoHomeOutline fontSize="1.5rem" cursor="pointer" />
+              )}
+            </NavLink>
+
             <BsInbox fontSize="1.5rem" cursor="pointer" />
-            <IoCompassOutline fontSize="1.5rem" cursor="pointer" />
+            <CgAddR fontSize="1.5rem" cursor="pointer" />
             <IoHeartOutline fontSize="1.5rem" cursor="pointer" />
             <HeaderProfileContainer
-              clicked={showDrawer}
+              active={currentPath === '/:uid/' ? true : false}
               onClick={() => setShowDrawer((prev) => !prev)}
             >
               <HeaderProfileImage

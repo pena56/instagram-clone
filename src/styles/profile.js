@@ -57,6 +57,8 @@ export const ProfileImage = styled.img`
   object-fit: cover;
   border-radius: 50%;
   cursor: pointer;
+  background: #fafafa;
+  padding: 3px;
 
   @media (max-width: 450px) {
     max-width: 90px;
@@ -64,6 +66,17 @@ export const ProfileImage = styled.img`
     max-height: 90px;
     min-height: 90px;
   }
+`;
+
+export const ProfileImageContainer = styled.div`
+  background: linear-gradient(to right, red, orange);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
 `;
 
 export const ProfileDetails = styled.div`

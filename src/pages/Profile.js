@@ -60,7 +60,7 @@ function Profile({ match }) {
         <LoaderScreen />
       ) : (
         <>
-          <Header />
+          <Header currentPath={match.path} />
           <ProfileBanner
             isFollowing={followStatus}
             following={following}

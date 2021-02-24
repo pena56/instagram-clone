@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
 import EditAccount from './pages/EditAccount';
+import Home from './pages/Home';
 
 // components
 import PrivateRoute from './components/PrivateRoute';
@@ -22,6 +23,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Switch>
+            <Route path="/" exact component={Home} />
             <Route path="/:uid/" exact component={Profile} />
             <Route path="/accounts/emailsignup/" component={SignUp} />
             <Route path="/accounts/password/reset/" component={ResetPassword} />

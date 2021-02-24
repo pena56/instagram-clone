@@ -24,6 +24,7 @@ import {
   ModalImage,
   UnfollowText,
   ModalButton,
+  ProfileImageContainer,
 } from '../styles/profile';
 
 import { useAuth } from '../contexts/AuthContext';
@@ -68,10 +69,13 @@ function ProfileBanner({ userProfile, followers, following, isFollowing }) {
 
   return (
     <BannerContainer>
-      <ProfileImage
-        src={userProfile.photoURL ? userProfile.photoURL : blankProfile}
-        alt="profile"
-      />
+      <ProfileImageContainer>
+        <ProfileImage
+          src={userProfile.photoURL ? userProfile.photoURL : blankProfile}
+          alt="profile"
+        />
+      </ProfileImageContainer>
+
       <ProfileDetails>
         <ProfileMeta>
           <Username>{userProfile.username}</Username>

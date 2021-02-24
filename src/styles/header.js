@@ -111,7 +111,7 @@ export const HeaderProfileContainer = styled.div`
   justify-content: center;
   align-items: center;
   border: ${(props) =>
-    props.clicked ? 'thin solid #000000' : 'thin solid transparent'};
+    props.active ? 'thin solid #000000' : 'thin solid transparent'};
   border-radius: 50%;
 `;
 
