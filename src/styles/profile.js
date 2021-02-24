@@ -145,18 +145,20 @@ export const Username = styled.p`
 
   @media (max-width: 450px) {
     font-size: 1.5rem;
+    width: 100%;
   }
 `;
 
 export const ProfileButton = styled.button`
   outline: none;
-  padding: 7px;
+  padding: 7px 14px;
   border: thin solid #dbdbdb;
   color: #262626;
   background: none;
   cursor: pointer;
   border-radius: 5px;
   font-size: 0.9rem;
+  position: relative;
 
   &.follow-btn {
     border: none;
@@ -165,7 +167,7 @@ export const ProfileButton = styled.button`
   }
 
   @media (max-width: 450px) {
-    width: 100%;
+    /* width: 100%; */
   }
 `;
 
@@ -394,4 +396,46 @@ export const ImageLoader = styled.div`
 
 export const Loader = styled(ImageLoader)`
   border-radius: 0;
+  top: 0;
+  left: 0;
+`;
+
+export const UnfollowModal = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const ModalImage = styled(ProfileImage)`
+  min-width: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  min-height: 100px;
+  margin: 30px 0;
+`;
+
+export const UnfollowText = styled.p`
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+`;
+
+export const ModalButton = styled.button`
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  cursor: pointer;
+  border-top: thin solid #dbdbdb;
+  outline: none;
+  background: none;
+  font-size: 0.9rem;
+
+  &.danger {
+    font-weight: 700;
+    color: #ed4956;
+  }
+
+  &.first {
+    border-top: none;
+  }
 `;
