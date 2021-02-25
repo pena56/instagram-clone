@@ -86,6 +86,10 @@ export const PostHeader = styled.div`
     z-index: 3;
     border-bottom: thin solid #dbdbdb;
   }
+
+  &.search {
+    padding: 5px;
+  }
 `;
 
 export const CommentRow = styled(PostHeader)`
@@ -153,12 +157,21 @@ export const UserImage = styled(AuthorImage)`
     width: 30px;
     height: 30px;
   }
+
+  &.search {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 export const Names = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
+
+  &.search {
+    gap: 3px;
+  }
 `;
 
 export const PostImage = styled.img`
@@ -412,8 +425,12 @@ export const LoadingModal = styled(CaptionSection)`
   right: 0;
   align-items: center;
   justify-content: center;
-  opacity: 0.3;
+  opacity: 0.7;
   background: #000000;
+
+  &.search {
+    background: #fafafa;
+  }
 `;
 
 export const DescContainer = styled.div`

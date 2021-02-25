@@ -1,14 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useHistory, NavLink } from 'react-router-dom';
 
 import { AiOutlineCompass, AiFillCompass } from 'react-icons/ai';
-import { IoHomeOutline, IoHomeSharp, IoBookmarkOutline } from 'react-icons/io5';
-import { IoHeartOutline } from 'react-icons/io5';
+import {
+  IoHomeOutline,
+  IoHomeSharp,
+  IoBookmarkOutline,
+  IoHeartOutline,
+  IoHeart,
+} from 'react-icons/io5';
 import { CgProfile } from 'react-icons/cg';
 import { RiSettings3Line } from 'react-icons/ri';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md';
 
+import ReactLoading from 'react-loading';
+
+import { searchUsers } from '../adapters/search';
 import { useAuth } from '../contexts/AuthContext';
 
 import UploadModal from '../components/UploadModal';
@@ -34,8 +42,25 @@ import {
   HeaderLink,
 } from '../styles/header';
 
+import {
+  PostHeader,
+  PostHeaderDetails,
+  UserImage,
+  Names,
+  AuthorName,
+  LoadingModal,
+} from '../styles/posts';
+import { ProfileImageContainer } from '../styles/profile';
+
 function Header({ currentPath }) {
   const [showDrawer, setShowDrawer] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+
+  const searchRef = useRef();
 
   const history = useHistory();
 
@@ -56,6 +81,34 @@ function Header({ currentPath }) {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    if (e.target.value.length >= 3) {
+      setLoading(true);
+      setShowSearchBar(true);
+      searchUsers(e.target.value)
+        .then((snapshot) => {
+          setLoading(false);
+          if (snapshot.empty) {
+            console.log('No entry found');
+          } else {
+            setSearchResults(snapshot.docs);
+            // console.log(snapshot.docs[0].data());
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      setShowSearchBar(false);
+    }
+  };
+
+  const cancelSearch = () => {
+    setSearchQuery('');
+    setShowSearchBar(false);
+  };
+
   return (
     <HeaderContainer>
       <Link to="/">
@@ -63,16 +116,55 @@ function Header({ currentPath }) {
       </Link>
 
       <SearchFieldContainer>
-        <SearchField placeholder="Search" />
+        <SearchField
+          value={searchQuery}
+          onChange={(e) => handleSearch(e)}
+          placeholder="Search"
+        />
 
         <SearchIconContainer>
           <AiOutlineSearch color="#dbdbdb" fontSize="1rem" />
         </SearchIconContainer>
 
-        <CancelIconContainer>
+        <CancelIconContainer onClick={() => setShowSearchBar(false)}>
           <MdCancel cursor="pointer" color="#dbdbdb" fontSize="1rem" />
         </CancelIconContainer>
       </SearchFieldContainer>
+
+      <DropdownMenu className="search" show={showSearchBar}>
+        {loading && (
+          <LoadingModal className="search">
+            <ReactLoading type="spokes" color="#000000" fontSize="5%" />
+          </LoadingModal>
+        )}
+
+        <Triangle className="search" />
+
+        {searchResults &&
+          searchResults.map((result) => (
+            <Link to={`/${result.id}`}>
+              <PostHeader key={result.id} className="search">
+                <PostHeaderDetails>
+                  <ProfileImageContainer>
+                    <UserImage
+                      className="search"
+                      src={result.data().photoURL}
+                      alt="profile"
+                    />
+                  </ProfileImageContainer>
+                  <Names className="search">
+                    <AuthorName className="thick">
+                      {result.data().username}
+                    </AuthorName>
+                    <AuthorName className="secondary">
+                      {result.data().fullName}
+                    </AuthorName>
+                  </Names>
+                </PostHeaderDetails>
+              </PostHeader>
+            </Link>
+          ))}
+      </DropdownMenu>
       <HeaderIcons>
         {currentUser ? (
           <>
@@ -94,7 +186,28 @@ function Header({ currentPath }) {
 
             <UploadModal />
 
-            <IoHeartOutline fontSize="1.5rem" cursor="pointer" />
+            {showNotification ? (
+              <IoHeart
+                onClick={() => setShowNotification((prev) => !prev)}
+                fontSize="1.5rem"
+                cursor="pointer"
+              />
+            ) : (
+              <IoHeartOutline
+                onClick={() => setShowNotification((prev) => !prev)}
+                fontSize="1.5rem"
+                cursor="pointer"
+              />
+            )}
+
+            <DropdownMenu className="notifications" show={showNotification}>
+              <Triangle className="notifications" />
+              <DropdownText className="notifications">This Month</DropdownText>
+              <DropdownText>
+                You currently don't have any notifications
+              </DropdownText>
+            </DropdownMenu>
+
             <HeaderProfileContainer
               active={currentPath === '/:uid/' ? true : false}
               onClick={() => setShowDrawer((prev) => !prev)}
