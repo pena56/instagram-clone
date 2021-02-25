@@ -30,7 +30,8 @@ export const BannerContainer = styled.div`
     gap: 10px;
     flex-wrap: wrap;
     position: relative;
-    height: 500px;
+    height: fit-content;
+    padding-bottom: 170px;
   }
 `;
 
@@ -77,6 +78,10 @@ export const ProfileImageContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 2px;
+
+  &.modal {
+    align-self: flex-start;
+  }
 `;
 
 export const ProfileDetails = styled.div`
@@ -206,15 +211,23 @@ export const ProfilePostContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 15%;
+  box-sizing: border-box;
+
+  @media (max-width: 450px) {
+    padding: 0;
+  }
 `;
 
 export const ProfilePostHeader = styled.div`
   width: 100%;
   border-top: thin solid #dbdbdb;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  box-sizing: border-box;
 
   @media (max-width: 450px) {
-    border: none;
+    justify-content: space-around;
   }
 `;
 
@@ -451,4 +464,83 @@ export const ModalButton = styled.button`
   &.first {
     border-top: none;
   }
+`;
+
+export const ProfileHeader = styled.div`
+  width: fit-content;
+  display: flex;
+  padding: 15px 10px;
+  gap: 5px;
+  cursor: pointer;
+
+  &.active {
+    border-top: 1px solid #000000;
+    font-weight: 700;
+  }
+`;
+
+export const HeaderName = styled.p`
+  font-size: 0.8rem;
+`;
+
+export const UserPosts = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 5px;
+  justify-content: center;
+  box-sizing: border-box;
+
+  @media (max-width: 450px) {
+    justify-content: space-between;
+    gap: 0;
+    overflow-x: hidden;
+  }
+`;
+
+export const PostOverlay = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  transition: opacity 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.5;
+  }
+`;
+
+export const OverlayContainer = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #ffffff;
+`;
+
+export const UserPost = styled.div`
+  width: 32%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+
+  @media (max-width: 450px) {
+    height: 100px;
+    width: 33%;
+    margin-bottom: 2px;
+  }
+`;
+
+export const PostImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;

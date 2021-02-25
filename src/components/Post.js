@@ -31,6 +31,8 @@ import {
   ModalContainer,
   ModalImage,
   ModalDetails,
+  ModalFooter,
+  ModalComment,
   CommentSection,
 } from '../styles/posts';
 import { ProfileImageContainer } from '../styles/profile';
@@ -116,14 +118,21 @@ function Post() {
         onClose={() => setShowPostModal(false)}
         showCloseButton={false}
         customMaskStyles={{ opacity: '0.8', backgroundColor: '#262626' }}
-        customStyles={{ padding: '0', width: '80%', height: 'fit-content' }}
+        customStyles={{
+          padding: '0',
+          width: '95%',
+          height: 'fit-content',
+          maxHeight: '90vh',
+          boxSizing: 'border-box',
+          overflow: 'hidden',
+        }}
       >
         <ModalContainer>
           <ModalImage>
             <PostImage src={home} alt="post" />
           </ModalImage>
           <ModalDetails>
-            <PostHeader>
+            <PostHeader className="modal">
               <PostHeaderDetails>
                 <ProfileImageContainer>
                   <AuthorImage
@@ -133,7 +142,9 @@ function Post() {
                   />
                 </ProfileImageContainer>
 
-                <AuthorName>kahstudios . Following</AuthorName>
+                <AuthorName className="darker thick">
+                  kahstudios . Following
+                </AuthorName>
               </PostHeaderDetails>
               <FiMoreHorizontal
                 onClick={() => setShowModal(true)}
@@ -141,95 +152,133 @@ function Post() {
                 fontSize="1.5rem"
               />
             </PostHeader>
-            <CommentSection>
+            <CommentSection className="modal">
               <CommentRow>
-                <PostDesc>
-                  rumeo_ <DescText>The best !!!!</DescText>
-                </PostDesc>
+                <ProfileImageContainer className="modal">
+                  <AuthorImage
+                    className="modal"
+                    src={blankImage}
+                    alt="profile"
+                  />
+                </ProfileImageContainer>
+                <ModalComment>
+                  <PostDesc>
+                    kahstudios
+                    <DescText>
+                      ‼️Fan Art Contest Entry‼️ Entry #13 Kindly Vote by liking
+                      this entry and also remember to follow 😉 Name: Neo ig
+                      handle: @Artsbyneo #kahstudioscontest #faithcomicbook
+                      #fanartcontest #artwork
+                    </DescText>
+                  </PostDesc>
+                  <PostDesc className="activity">
+                    <DescText>1d</DescText>
+                  </PostDesc>
+                </ModalComment>
 
-                <BsHeart fontSize="0.7rem" cursor="pointer" />
+                <BsHeart fontSize="0.9rem" cursor="pointer" />
               </CommentRow>
-              <CommentRow>
-                <PostDesc>
-                  rumeo_ <DescText>The best !!!!</DescText>
-                </PostDesc>
 
-                <BsHeart fontSize="0.7rem" cursor="pointer" />
+              <CommentRow>
+                <AuthorImage className="modal" src={blankImage} alt="profile" />
+                <ModalComment>
+                  <PostDesc>
+                    rumeo_ <DescText>The best !!!!</DescText>
+                  </PostDesc>
+                  <PostDesc className="activity">
+                    <DescText>21h</DescText>
+                    <DescText>2 likes</DescText>
+                    <DescText className="reply">Reply</DescText>
+                  </PostDesc>
+                </ModalComment>
+
+                <BsHeart fontSize="0.9rem" cursor="pointer" />
               </CommentRow>
-              <CommentRow>
-                <PostDesc>
-                  rumeo_ <DescText>The best !!!!</DescText>
-                </PostDesc>
 
-                <BsHeart fontSize="0.7rem" cursor="pointer" />
+              <CommentRow>
+                <AuthorImage className="modal" src={blankImage} alt="profile" />
+                <ModalComment>
+                  <PostDesc>
+                    rumeo_ <DescText>The best !!!!</DescText>
+                  </PostDesc>
+                  <PostDesc className="activity">
+                    <DescText>21h</DescText>
+                    <DescText>2 likes</DescText>
+                    <DescText className="reply">Reply</DescText>
+                  </PostDesc>
+                </ModalComment>
+
+                <BsHeart fontSize="0.9rem" cursor="pointer" />
               </CommentRow>
-              <CommentRow>
-                <PostDesc>
-                  rumeo_ <DescText>The best !!!!</DescText>
-                </PostDesc>
 
-                <BsHeart fontSize="0.7rem" cursor="pointer" />
+              <CommentRow>
+                <AuthorImage className="modal" src={blankImage} alt="profile" />
+                <ModalComment>
+                  <PostDesc>
+                    rumeo_ <DescText>The best !!!!</DescText>
+                  </PostDesc>
+                  <PostDesc className="activity">
+                    <DescText>21h</DescText>
+                    <DescText>2 likes</DescText>
+                    <DescText className="reply">Reply</DescText>
+                  </PostDesc>
+                </ModalComment>
+
+                <BsHeart fontSize="0.9rem" cursor="pointer" />
               </CommentRow>
-              <CommentRow>
-                <PostDesc>
-                  rumeo_ <DescText>The best !!!!</DescText>
-                </PostDesc>
 
-                <BsHeart fontSize="0.7rem" cursor="pointer" />
-              </CommentRow>
               <CommentRow>
-                <PostDesc>
-                  rumeo_ <DescText>The best !!!!</DescText>
-                </PostDesc>
+                <AuthorImage className="modal" src={blankImage} alt="profile" />
+                <ModalComment>
+                  <PostDesc>
+                    rumeo_ <DescText>The best !!!!</DescText>
+                  </PostDesc>
+                  <PostDesc className="activity">
+                    <DescText>21h</DescText>
+                    <DescText>2 likes</DescText>
+                    <DescText className="reply">Reply</DescText>
+                  </PostDesc>
+                </ModalComment>
 
-                <BsHeart fontSize="0.7rem" cursor="pointer" />
-              </CommentRow>
-              <CommentRow>
-                <PostDesc>
-                  rumeo_ <DescText>The best !!!!</DescText>
-                </PostDesc>
-
-                <BsHeart fontSize="0.7rem" cursor="pointer" />
-              </CommentRow>
-              <CommentRow>
-                <PostDesc>
-                  rumeo_ <DescText>The best !!!!</DescText>
-                </PostDesc>
-
-                <BsHeart fontSize="0.7rem" cursor="pointer" />
+                <BsHeart fontSize="0.9rem" cursor="pointer" />
               </CommentRow>
             </CommentSection>
-            <PostHeader>
-              <PostHeaderDetails>
-                <BsHeart fontSize="1.7rem" cursor="pointer" />
-                <BsChat fontSize="1.7rem" cursor="pointer" />
-                <BsInbox fontSize="1.7rem" cursor="pointer" />
-              </PostHeaderDetails>
-              <BsBookmark fontSize="1.7rem" cursor="pointer" />
-            </PostHeader>
 
-            <PostLikes>105 likes</PostLikes>
+            <ModalFooter>
+              <PostHeader>
+                <PostHeaderDetails>
+                  <BsHeart fontSize="1.7rem" cursor="pointer" />
+                  <BsChat fontSize="1.7rem" cursor="pointer" />
+                  <BsInbox fontSize="1.7rem" cursor="pointer" />
+                </PostHeaderDetails>
+                <BsBookmark fontSize="1.7rem" cursor="pointer" />
+              </PostHeader>
 
-            <CommentBox>
-              <GrEmoji fontSize="1.7rem" cursor="pointer" />
-              <CommentForm>
-                <CommentField type="text" placeholder="Add a comment..." />
-              </CommentForm>
-              <CommentButton>Post</CommentButton>
-            </CommentBox>
+              <PostLikes>105 likes</PostLikes>
+
+              <CommentBox>
+                <GrEmoji fontSize="1.7rem" cursor="pointer" />
+                <CommentForm>
+                  <CommentField type="text" placeholder="Add a comment..." />
+                </CommentForm>
+                <CommentButton>Post</CommentButton>
+              </CommentBox>
+            </ModalFooter>
           </ModalDetails>
         </ModalContainer>
       </Rodal>
 
       <Rodal
-        measure="px"
-        width={350}
-        height={330}
         visible={showModal}
         onClose={() => setShowModal(false)}
         showCloseButton={false}
         customMaskStyles={{ opacity: '0.8', backgroundColor: '#262626' }}
-        customStyles={{ borderRadius: '15px', padding: '0' }}
+        customStyles={{
+          width: '350px',
+          height: 'fit-content',
+          borderRadius: '15px',
+          padding: '0',
+        }}
       >
         <UnfollowModal>
           <ModalButton className="danger first">Report</ModalButton>

@@ -1,11 +1,9 @@
-import { BsGrid3X3, BsFillChatFill, BsFillHeartFill } from 'react-icons/bs';
-import { IoPricetagsOutline } from 'react-icons/io5';
+import { BsFillHeartFill, BsFillChatFill } from 'react-icons/bs';
 
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { ExploreContainer } from '../styles/posts';
 import {
-  ProfilePostContainer,
-  ProfilePostHeader,
-  ProfileHeader,
-  HeaderName,
   UserPosts,
   UserPost,
   PostImage,
@@ -14,21 +12,10 @@ import {
 } from '../styles/profile';
 import home from '../images/home.jpg';
 
-function ProfilePost() {
+function Explore({ match }) {
   return (
-    <ProfilePostContainer>
-      <ProfilePostHeader>
-        <ProfileHeader className="active">
-          <BsGrid3X3 />
-          <HeaderName>POSTS</HeaderName>
-        </ProfileHeader>
-
-        <ProfileHeader>
-          <IoPricetagsOutline />
-          <HeaderName>TAGS</HeaderName>
-        </ProfileHeader>
-      </ProfilePostHeader>
-
+    <ExploreContainer>
+      <Header currentPath={match.path} />
       <UserPosts>
         <UserPost>
           <PostImage src={home} alt="post" />
@@ -174,8 +161,9 @@ function ProfilePost() {
           </PostOverlay>
         </UserPost>
       </UserPosts>
-    </ProfilePostContainer>
+      <Footer />
+    </ExploreContainer>
   );
 }
 
-export default ProfilePost;
+export default Explore;

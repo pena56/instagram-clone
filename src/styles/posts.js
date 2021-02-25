@@ -13,6 +13,11 @@ export const HomeContainer = styled(ProfileContainer)`
   position: relative;
 `;
 
+export const ExploreContainer = styled(HomeContainer)`
+  overflow-y: scroll;
+  flex-direction: column;
+`;
+
 export const PostList = styled.div`
   width: 65%;
   max-height: 100vh;
@@ -73,11 +78,19 @@ export const PostHeader = styled.div`
     width: 90%;
     margin: 7px 0;
   }
+
+  &.modal {
+    height: 55px;
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    border-bottom: thin solid #dbdbdb;
+  }
 `;
 
 export const CommentRow = styled(PostHeader)`
   padding: 0;
-  padding-right: 15px;
+  padding: 0 15px;
   margin-top: 5px;
 `;
 
@@ -110,6 +123,10 @@ export const AuthorName = styled.p`
   &.small {
     font-size: 0.7rem;
   }
+
+  &.darker {
+    color: #000000;
+  }
 `;
 
 export const AuthorImage = styled.img`
@@ -121,8 +138,8 @@ export const AuthorImage = styled.img`
   padding: 2px;
 
   &.modal {
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
   }
 `;
 
@@ -155,10 +172,27 @@ export const PostLikes = styled(AuthorName)`
   font-weight: 700;
 `;
 
-export const PostDesc = styled(PostLikes)``;
+export const PostDesc = styled(PostLikes)`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  &.activity {
+    gap: 15px;
+    font-weight: 700;
+  }
+`;
 
 export const DescText = styled.span`
   font-weight: 500;
+
+  &.reply {
+    cursor: pointer;
+  }
 `;
 
 export const MoreLink = styled(DescText)`
@@ -213,6 +247,18 @@ export const ModalContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+  }
+
+  &.upload {
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
 `;
 
 export const ModalImage = styled.div`
@@ -221,18 +267,177 @@ export const ModalImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 450px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const ModalDetails = styled.div`
   width: 40%;
-  height: 100%;
+  height: inherit;
   display: flex;
   flex-direction: column;
+  position: absolute;
+  background: #ffffff;
+  right: 0;
+  overflow-y: hidden;
 `;
 
 export const CommentSection = styled.div`
   width: 100%;
-  max-height: 100vh;
   display: flex;
   flex-direction: column;
+  gap: 15px;
+
+  &.modal {
+    padding: 10px 0;
+    margin-top: 55px;
+    margin-bottom: 150px;
+    overflow-y: scroll;
+    height: 100%;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #828689;
+    }
+  }
+`;
+
+export const ModalFooter = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+`;
+
+export const ModalComment = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  width: 100%;
+`;
+
+export const UploadButton = styled.label``;
+
+export const UploadField = styled.input`
+  width: 0;
+  display: none;
+  opacity: 0;
+`;
+
+export const ModalHeader = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10px;
+  align-items: center;
+  background: #ffffff;
+
+  &.footer {
+    justify-content: space-around;
+    border-top: thin solid #dbdbdb;
+    border-bottom: thin solid #dbdbdb;
+    padding: 0;
+  }
+`;
+
+export const ModalTitle = styled.p`
+  color: #000000;
+  font-size: 0.9rem;
+  font-weight: 700;
+`;
+
+export const NextButton = styled(ModalTitle)`
+  color: #0095f6;
+  cursor: pointer;
+`;
+
+export const ImagePreview = styled.img`
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  margin-bottom: 20px;
+
+  &.small {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin: 0;
+  }
+`;
+
+export const FooterAction = styled.div`
+  width: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: thin solid #000000;
+  box-sizing: border-box;
+
+  &.disabled {
+    border: none;
+  }
+`;
+
+export const PhotoSection = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #fafafa;
+  box-sizing: border-box;
+`;
+
+export const CaptionSection = styled(PhotoSection)`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: ${(props) => (props.show ? '0' : '-100%')};
+  transition: right 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
+export const LoadingModal = styled(CaptionSection)`
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  background: #000000;
+`;
+
+export const DescContainer = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  background: #ffffff;
+  border-top: thin solid #dbdbdb;
+  border-bottom: thin solid #dbdbdb;
+  margin: 10px 0;
+  box-sizing: border-box;
+  justify-content: space-between;
+`;
+
+export const UserPrevImage = styled.img`
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+`;
+
+export const TextArea = styled.textarea`
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: none;
 `;

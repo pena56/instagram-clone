@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useHistory, NavLink } from 'react-router-dom';
 
+import { AiOutlineCompass, AiFillCompass } from 'react-icons/ai';
 import { IoHomeOutline, IoHomeSharp, IoBookmarkOutline } from 'react-icons/io5';
-import { CgAddR } from 'react-icons/cg';
-import { BsInbox } from 'react-icons/bs';
 import { IoHeartOutline } from 'react-icons/io5';
 import { CgProfile } from 'react-icons/cg';
 import { RiSettings3Line } from 'react-icons/ri';
@@ -11,6 +10,8 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md';
 
 import { useAuth } from '../contexts/AuthContext';
+
+import UploadModal from '../components/UploadModal';
 
 import logo from '../images/logo.svg';
 import blankProfile from '../images/BlankImage.jpg';
@@ -83,8 +84,16 @@ function Header({ currentPath }) {
               )}
             </NavLink>
 
-            <BsInbox fontSize="1.5rem" cursor="pointer" />
-            <CgAddR fontSize="1.5rem" cursor="pointer" />
+            <NavLink to="/explore/">
+              {currentPath === '/explore/' ? (
+                <AiFillCompass fontSize="1.5rem" cursor="pointer" />
+              ) : (
+                <AiOutlineCompass fontSize="1.5rem" cursor="pointer" />
+              )}
+            </NavLink>
+
+            <UploadModal />
+
             <IoHeartOutline fontSize="1.5rem" cursor="pointer" />
             <HeaderProfileContainer
               active={currentPath === '/:uid/' ? true : false}
@@ -106,10 +115,13 @@ function Header({ currentPath }) {
                 <IoBookmarkOutline fontSize="1.2rem" />
                 <DropdownText>Saved</DropdownText>
               </DropdownItem>
-              <DropdownItem>
-                <RiSettings3Line fontSize="1.2rem" />
-                <DropdownText>Settings</DropdownText>
-              </DropdownItem>
+              <NavLink to="/accounts/edit/">
+                <DropdownItem>
+                  <RiSettings3Line fontSize="1.2rem" />
+                  <DropdownText>Settings</DropdownText>
+                </DropdownItem>
+              </NavLink>
+
               <LogoutLink onClick={handleSignout}>
                 <DropdownText>Logout</DropdownText>
               </LogoutLink>
