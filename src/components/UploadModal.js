@@ -8,6 +8,11 @@ import ReactLoading from 'react-loading';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 
+import { createPost } from '../adapters/post';
+import checkFileType from '../utils/checkFileType';
+import uploadImage from '../adapters/uploadImage';
+import { useAuth } from '../contexts/AuthContext';
+
 import {
   ModalContainer,
   UploadButton,
@@ -31,8 +36,10 @@ function UploadModal() {
   const [selectedImage, setSelectedImage] = useState();
   const [slide, setSlide] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { currentUser } = useAuth();
 
   const image = useRef();
+  const postDesc = useRef();
 
   const handleSelect = () => {
     const imgURL = URL.createObjectURL(image.current.files[0]);
@@ -42,7 +49,20 @@ function UploadModal() {
 
   const handleUpload = () => {
     setLoading(true);
-    console.log(image.current.files[0]);
+    if (checkFileType(image.current.files[0])) {
+      uploadImage(image.current.files[0]).then((url) => {
+        createPost(currentUser, url, postDesc.current.value)
+          .then((ref) => {
+            // console.log(ref);
+            setLoading(false);
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.error(error.message);
+            setLoading(false);
+          });
+      });
+    }
   };
 
   return (
@@ -109,7 +129,11 @@ function UploadModal() {
 
             <DescContainer>
               <UserPrevImage src={defaultProfile} alt="profile" />
-              <TextArea placeholder="Write a caption..." rows="2" />
+              <TextArea
+                ref={postDesc}
+                placeholder="Write a caption..."
+                rows="2"
+              />
               {selectedImage && (
                 <ImagePreview
                   className="small"

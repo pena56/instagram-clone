@@ -524,23 +524,44 @@ export const OverlayContainer = styled.div`
 `;
 
 export const UserPost = styled.div`
-  width: 32%;
-  height: 300px;
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 300px;
+  max-height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   position: relative;
+  box-sizing: border-box;
 
   @media (max-width: 450px) {
-    height: 100px;
-    width: 33%;
+    min-height: 120px;
+    max-height: 120px;
+    min-width: 120px;
+    max-width: 120px;
     margin-bottom: 2px;
   }
 `;
 
 export const PostImage = styled.img`
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
+  /* max-height: 500px; */
+
+  &.modal {
+    max-width: 300px;
+    min-width: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    object-fit: cover;
+
+    @media (max-width: 450px) {
+      min-height: 120px;
+      max-height: 120px;
+      min-width: 120px;
+      max-width: 120px;
+    }
+  }
 `;

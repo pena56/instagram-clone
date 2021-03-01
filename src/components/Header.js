@@ -103,11 +103,6 @@ function Header({ currentPath }) {
     }
   };
 
-  const cancelSearch = () => {
-    setSearchQuery('');
-    setShowSearchBar(false);
-  };
-
   return (
     <HeaderContainer>
       <Link to="/">

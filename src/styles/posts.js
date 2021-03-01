@@ -104,7 +104,7 @@ export const PostHeader = styled.div`
 export const CommentRow = styled(PostHeader)`
   padding: 0;
   padding-right: 15px;
-  /* padding: 0 15px; */
+  align-items: flex-start;
   margin-top: 5px;
 `;
 
@@ -185,10 +185,11 @@ export const Names = styled.div`
 `;
 
 export const PostImage = styled.img`
-  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
   height: auto;
   cursor: pointer;
-  object-fit: cover;
+  /* object-fit: cover; */
 `;
 
 export const PostLikes = styled(AuthorName)`
@@ -245,7 +246,7 @@ export const CommentBox = styled.div`
   align-items: center;
 `;
 
-export const CommentForm = styled.form`
+export const CommentForm = styled.div`
   width: 100%;
   display: flex;
 `;
