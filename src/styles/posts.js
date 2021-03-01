@@ -87,6 +87,15 @@ export const PostHeader = styled.div`
     border-bottom: thin solid #dbdbdb;
   }
 
+  &.modal-header {
+    display: none;
+
+    @media (max-width: 450px) {
+      display: flex;
+      position: relative;
+    }
+  }
+
   &.search {
     padding: 5px;
   }
@@ -94,7 +103,8 @@ export const PostHeader = styled.div`
 
 export const CommentRow = styled(PostHeader)`
   padding: 0;
-  padding: 0 15px;
+  padding-right: 15px;
+  /* padding: 0 15px; */
   margin-top: 5px;
 `;
 
@@ -178,6 +188,7 @@ export const PostImage = styled.img`
   width: 100%;
   height: auto;
   cursor: pointer;
+  object-fit: cover;
 `;
 
 export const PostLikes = styled(AuthorName)`
@@ -296,6 +307,14 @@ export const ModalDetails = styled.div`
   background: #ffffff;
   right: 0;
   overflow-y: hidden;
+
+  @media (max-width: 450px) {
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    overflow-y: scroll;
+    display: none;
+  }
 `;
 
 export const CommentSection = styled.div`
@@ -303,9 +322,11 @@ export const CommentSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  box-sizing: border-box;
 
   &.modal {
     padding: 10px 0;
+    padding-left: 15px;
     margin-top: 55px;
     margin-bottom: 150px;
     overflow-y: scroll;
@@ -330,6 +351,16 @@ export const ModalFooter = styled.div`
   bottom: 0;
   width: 100%;
   height: 150px;
+
+  &.footer {
+    display: none;
+
+    @media (max-width: 450px) {
+      position: relative;
+      height: fit-content;
+      display: block;
+    }
+  }
 `;
 
 export const ModalComment = styled.div`

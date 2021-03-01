@@ -89,7 +89,7 @@ function Post() {
           rumeo_ <DescText>The best !!!!</DescText>
         </PostDesc>
 
-        <BsHeart fontSize="0.7rem" cursor="pointer" />
+        <BsHeart fontSize="0.9rem" cursor="pointer" />
       </CommentRow>
 
       <CommentRow>
@@ -98,7 +98,7 @@ function Post() {
           <DescText>Bro.....cool art man, what software did you use</DescText>
         </PostDesc>
 
-        <BsHeart fontSize="0.7rem" cursor="pointer" />
+        <BsHeart fontSize="0.9rem" cursor="pointer" />
       </CommentRow>
 
       <CommentRow>
@@ -128,9 +128,40 @@ function Post() {
         }}
       >
         <ModalContainer>
+          <PostHeader className="modal modal-header">
+            <PostHeaderDetails>
+              <ProfileImageContainer>
+                <AuthorImage className="modal" src={blankImage} alt="profile" />
+              </ProfileImageContainer>
+
+              <AuthorName className="darker thick">
+                kahstudios . Following
+              </AuthorName>
+            </PostHeaderDetails>
+            <FiMoreHorizontal
+              onClick={() => setShowModal(true)}
+              cursor="pointer"
+              fontSize="1.5rem"
+            />
+          </PostHeader>
           <ModalImage>
             <PostImage src={home} alt="post" />
           </ModalImage>
+          <ModalFooter className="footer">
+            <PostHeader>
+              <PostHeaderDetails>
+                <BsHeart fontSize="1.7rem" cursor="pointer" />
+                <BsChat fontSize="1.7rem" cursor="pointer" />
+                <BsInbox fontSize="1.7rem" cursor="pointer" />
+              </PostHeaderDetails>
+              <BsBookmark fontSize="1.7rem" cursor="pointer" />
+            </PostHeader>
+
+            <PostLikes>105 likes</PostLikes>
+            <CommentRow>
+              <PostTime>12 hours ago</PostTime>
+            </CommentRow>
+          </ModalFooter>
           <ModalDetails>
             <PostHeader className="modal">
               <PostHeaderDetails>
@@ -175,8 +206,6 @@ function Post() {
                     <DescText>1d</DescText>
                   </PostDesc>
                 </ModalComment>
-
-                <BsHeart fontSize="0.9rem" cursor="pointer" />
               </CommentRow>
 
               <CommentRow>

@@ -140,11 +140,19 @@ export const DropdownMenu = styled.div`
     right: 0;
     width: 250%;
     padding: 20px;
+
+    @media (max-width: 450px) {
+      width: 150%;
+      height: 200px;
+    }
   }
 
   &.search {
     width: 400px;
     padding: 0;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
     top: 60px;
     left: 30%;
     height: 350px;
@@ -178,6 +186,10 @@ export const Triangle = styled.div`
 
   &.notifications {
     top: -4%;
+
+    @media (max-width: 450px) {
+      right: 14%;
+    }
   }
 
   &.search {

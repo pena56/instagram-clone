@@ -83,7 +83,7 @@ function Header({ currentPath }) {
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
-    if (e.target.value.length >= 3) {
+    if (e.target.value.length >= 1) {
       setLoading(true);
       setShowSearchBar(true);
       searchUsers(e.target.value)
@@ -93,7 +93,6 @@ function Header({ currentPath }) {
             console.log('No entry found');
           } else {
             setSearchResults(snapshot.docs);
-            // console.log(snapshot.docs[0].data());
           }
         })
         .catch((error) => {
@@ -200,7 +199,7 @@ function Header({ currentPath }) {
               />
             )}
 
-            <DropdownMenu className="notifications" show={showNotification}>
+            <DropdownMenu className="notifications " show={showNotification}>
               <Triangle className="notifications" />
               <DropdownText className="notifications">This Month</DropdownText>
               <DropdownText>
