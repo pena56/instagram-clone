@@ -24,6 +24,7 @@ import {
   ModalImage,
   UnfollowText,
   ModalButton,
+  ProfileImageContainer,
 } from '../styles/profile';
 
 import { useAuth } from '../contexts/AuthContext';
@@ -68,10 +69,13 @@ function ProfileBanner({ userProfile, followers, following, isFollowing }) {
 
   return (
     <BannerContainer>
-      <ProfileImage
-        src={userProfile.photoURL ? userProfile.photoURL : blankProfile}
-        alt="profile"
-      />
+      <ProfileImageContainer>
+        <ProfileImage
+          src={userProfile.photoURL ? userProfile.photoURL : blankProfile}
+          alt="profile"
+        />
+      </ProfileImageContainer>
+
       <ProfileDetails>
         <ProfileMeta>
           <Username>{userProfile.username}</Username>
@@ -137,14 +141,16 @@ function ProfileBanner({ userProfile, followers, following, isFollowing }) {
         )}
       </ProfileDetails>
       <Rodal
-        measure="px"
-        width={300}
-        height={290}
         visible={showUnfollow}
         onClose={() => setShowUnfollow(false)}
         showCloseButton={false}
         customMaskStyles={{ opacity: '0.8', backgroundColor: '#262626' }}
-        customStyles={{ borderRadius: '15px', padding: '0' }}
+        customStyles={{
+          width: '300px',
+          height: 'fit-content',
+          borderRadius: '15px',
+          padding: '0',
+        }}
       >
         <UnfollowModal>
           <ModalImage
@@ -162,14 +168,16 @@ function ProfileBanner({ userProfile, followers, following, isFollowing }) {
       </Rodal>
 
       <Rodal
-        measure="px"
-        width={300}
-        height={190}
         visible={showMore}
         onClose={() => setShowMore(false)}
         showCloseButton={false}
         customMaskStyles={{ opacity: '0.8', backgroundColor: '#262626' }}
-        customStyles={{ borderRadius: '15px', padding: '0' }}
+        customStyles={{
+          width: '300px',
+          height: 'fit-content',
+          borderRadius: '15px',
+          padding: '0',
+        }}
       >
         <UnfollowModal>
           <ModalButton className="danger first">Block the user</ModalButton>

@@ -31,3 +31,18 @@ export const updateProfile = (uid, data) => {
 
   return promise;
 };
+
+export const getAllUsers = () => {
+  let promise = new Promise(function (resolve, reject) {
+    db.collection('userProfile')
+      .get()
+      .then((snapshot) => {
+        resolve(snapshot);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+
+  return promise;
+};

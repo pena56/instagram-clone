@@ -111,7 +111,7 @@ export const HeaderProfileContainer = styled.div`
   justify-content: center;
   align-items: center;
   border: ${(props) =>
-    props.clicked ? 'thin solid #000000' : 'thin solid transparent'};
+    props.active ? 'thin solid #000000' : 'thin solid transparent'};
   border-radius: 50%;
 `;
 
@@ -131,8 +131,45 @@ export const DropdownMenu = styled.div`
   flex-direction: column;
   background: #ffffff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
-  border-radius: 5px;
+  border-radius: 10px;
   transition: display 0.3s ease-in-out;
+  box-sizing: border-box;
+
+  &.notifications {
+    height: 300px;
+    right: 0;
+    width: 250%;
+    padding: 20px;
+
+    @media (max-width: 450px) {
+      width: 150%;
+      height: 200px;
+    }
+  }
+
+  &.search {
+    width: 400px;
+    padding: 0;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    top: 60px;
+    left: 30%;
+    height: 350px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #828689;
+    }
+  }
 `;
 
 export const Triangle = styled.div`
@@ -146,6 +183,20 @@ export const Triangle = styled.div`
   border-bottom: 15px solid #ffffff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
   z-index: -1;
+
+  &.notifications {
+    top: -4%;
+
+    @media (max-width: 450px) {
+      right: 14%;
+    }
+  }
+
+  &.search {
+    /* background: red; */
+    top: -3%;
+    right: 50%;
+  }
 `;
 
 export const DropdownItem = styled.div`
@@ -164,6 +215,11 @@ export const DropdownItem = styled.div`
 export const DropdownText = styled.p`
   color: #000000;
   font-size: 0.8rem;
+
+  &.notifications {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
 `;
 
 export const LogoutLink = styled(DropdownItem)`

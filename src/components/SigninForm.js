@@ -43,7 +43,7 @@ function SignIn() {
     signin(email, password)
       .then((id) => {
         setLoading(false);
-        history.push(`/${id}`);
+        history.push(`/`);
       })
       .catch((error) => {
         setError(error.message);

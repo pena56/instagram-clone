@@ -8,6 +8,8 @@ import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
 import EditAccount from './pages/EditAccount';
+import Home from './pages/Home';
+import Explore from './pages/Explore';
 
 // components
 import PrivateRoute from './components/PrivateRoute';
@@ -22,10 +24,13 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Switch>
+            <PrivateRoute path="/" exact component={Home} />
+            <PrivateRoute exact path="/explore/" component={Explore} />
             <Route path="/:uid/" exact component={Profile} />
             <Route path="/accounts/emailsignup/" component={SignUp} />
             <Route path="/accounts/password/reset/" component={ResetPassword} />
             <Route path="/accounts/signin/" component={SignIn} />
+
             <PrivateRoute path="/accounts/edit/" component={EditAccount} />
           </Switch>
         </AuthProvider>

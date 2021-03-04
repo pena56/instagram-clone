@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
 
   html { 
     -webkit-font-smoothing: antialiased; 
+    scroll-behavior: smooth;
   }
 
   body {
