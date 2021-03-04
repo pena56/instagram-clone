@@ -265,6 +265,7 @@ export const CommentButton = styled.button`
   color: #0095f6;
   outline: none;
   border: none;
+  cursor: pointer;
 `;
 
 export const ModalContainer = styled.div`

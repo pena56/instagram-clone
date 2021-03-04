@@ -24,8 +24,8 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route exact path="/explore/" component={Explore} />
+            <PrivateRoute path="/" exact component={Home} />
+            <PrivateRoute exact path="/explore/" component={Explore} />
             <Route path="/:uid/" exact component={Profile} />
             <Route path="/accounts/emailsignup/" component={SignUp} />
             <Route path="/accounts/password/reset/" component={ResetPassword} />

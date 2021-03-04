@@ -128,7 +128,7 @@ function UploadModal() {
             </ModalHeader>
 
             <DescContainer>
-              <UserPrevImage src={defaultProfile} alt="profile" />
+              <UserPrevImage src={currentUser.photoURL} alt="profile" />
               <TextArea
                 ref={postDesc}
                 placeholder="Write a caption..."

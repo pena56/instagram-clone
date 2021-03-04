@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import Rodal from 'rodal';
+import { Link } from 'react-router-dom';
 
 import TimeAgo from 'javascript-time-ago';
 import ReactTimeAgo from 'react-time-ago';
@@ -69,7 +70,7 @@ function UserPostModal({ post }) {
     createComment(post.id, currentUser.displayName, commentRef.current.value)
       .then((snapshot) => {
         commentRef.current.value = '';
-        // console.log(snapshot);
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -79,7 +80,7 @@ function UserPostModal({ post }) {
   const likePost = () => {
     createLike(post.id, currentUser.displayName)
       .then((snapshot) => {
-        console.log(snapshot);
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -142,16 +143,20 @@ function UserPostModal({ post }) {
         <ModalContainer>
           <PostHeader className="modal modal-header">
             <PostHeaderDetails>
-              <ProfileImageContainer>
-                <AuthorImage
-                  className="modal"
-                  src={JSON.parse(post.data().userDetails).photoURL}
-                  alt="profile"
-                />
-              </ProfileImageContainer>
+              <Link to={`/${post.data().UID}`}>
+                <ProfileImageContainer>
+                  <AuthorImage
+                    className="modal"
+                    src={JSON.parse(post.data().userDetails).photoURL}
+                    alt="profile"
+                  />
+                </ProfileImageContainer>
+              </Link>
 
               <AuthorName className="darker thick">
-                {JSON.parse(post.data().userDetails).username}
+                <Link to={`/${post.data().UID}`}>
+                  {JSON.parse(post.data().userDetails).username}
+                </Link>
               </AuthorName>
             </PostHeaderDetails>
             <FiMoreHorizontal
@@ -191,16 +196,20 @@ function UserPostModal({ post }) {
           <ModalDetails>
             <PostHeader className="modal">
               <PostHeaderDetails>
-                <ProfileImageContainer>
-                  <AuthorImage
-                    className="modal"
-                    src={JSON.parse(post.data().userDetails).photoURL}
-                    alt="profile"
-                  />
-                </ProfileImageContainer>
+                <Link to={`/${post.data().UID}`}>
+                  <ProfileImageContainer>
+                    <AuthorImage
+                      className="modal"
+                      src={JSON.parse(post.data().userDetails).photoURL}
+                      alt="profile"
+                    />
+                  </ProfileImageContainer>
+                </Link>
 
                 <AuthorName className="darker thick">
-                  {JSON.parse(post.data().userDetails).username}
+                  <Link to={`/${post.data().UID}`}>
+                    {JSON.parse(post.data().userDetails).username}
+                  </Link>
                 </AuthorName>
               </PostHeaderDetails>
               <FiMoreHorizontal
@@ -211,16 +220,20 @@ function UserPostModal({ post }) {
             </PostHeader>
             <CommentSection className="modal">
               <CommentRow>
-                <ProfileImageContainer className="modal">
-                  <AuthorImage
-                    className="modal"
-                    src={JSON.parse(post.data().userDetails).photoURL}
-                    alt="profile"
-                  />
-                </ProfileImageContainer>
+                <Link to={`/${post.data().UID}`}>
+                  <ProfileImageContainer className="modal">
+                    <AuthorImage
+                      className="modal"
+                      src={JSON.parse(post.data().userDetails).photoURL}
+                      alt="profile"
+                    />
+                  </ProfileImageContainer>{' '}
+                </Link>
                 <ModalComment>
                   <PostDesc>
-                    {JSON.parse(post.data().userDetails).username}
+                    <Link to={`/${post.data().UID}`}>
+                      {JSON.parse(post.data().userDetails).username}
+                    </Link>
                     <DescText>{post.data().desc}</DescText>
                   </PostDesc>
                   <PostDesc className="activity">
@@ -237,14 +250,18 @@ function UserPostModal({ post }) {
 
               {comments?.map((comment) => (
                 <CommentRow>
-                  <AuthorImage
-                    className="modal"
-                    src={JSON.parse(comment.data().userDetails).photoURL}
-                    alt="profile"
-                  />
+                  <Link to={`/${post.data().UID}`}>
+                    <AuthorImage
+                      className="modal"
+                      src={JSON.parse(comment.data().userDetails).photoURL}
+                      alt="profile"
+                    />
+                  </Link>
                   <ModalComment>
                     <PostDesc>
-                      {JSON.parse(comment.data().userDetails).username}{' '}
+                      <Link to={`/${post.data().UID}`}>
+                        {JSON.parse(comment.data().userDetails).username}
+                      </Link>{' '}
                       <DescText>{comment.data().comment}</DescText>
                     </PostDesc>
                     <PostDesc className="activity">
@@ -254,7 +271,7 @@ function UserPostModal({ post }) {
                           locale="en-US"
                         />
                       </DescText>
-                      <DescText>2 likes</DescText>
+                      <DescText>likes</DescText>
                       <DescText className="reply">Reply</DescText>
                     </PostDesc>
                   </ModalComment>

@@ -1,3 +1,8 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { getUserProfile } from '../adapters/getProfile';
+
 import {
   SidebarContainer,
   PostHeader,
@@ -10,96 +15,80 @@ import {
 import { ProfileImageContainer } from '../styles/profile';
 import blankProfile from '../images/BlankImage.jpg';
 
-function HomeSidebar() {
+function HomeSidebar({ recommendedUsers }) {
+  const { currentUser } = useAuth();
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(() => {
+    getUserProfile(currentUser.displayName)
+      .then((data) => {
+        setUserInfo(data);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  }, []);
+
   return (
     <SidebarContainer>
-      <PostHeader>
-        <PostHeaderDetails>
-          <ProfileImageContainer>
-            <UserImage src={blankProfile} alt="profile" />
-          </ProfileImageContainer>
-          <Names>
-            <AuthorName className="thick">brake_emi</AuthorName>
-            <AuthorName className="secondary">Moses Ogbopina</AuthorName>
-          </Names>
-        </PostHeaderDetails>
+      {userInfo && (
+        <>
+          <PostHeader>
+            <PostHeaderDetails>
+              <Link to={`/${currentUser.displayName}`}>
+                <ProfileImageContainer>
+                  <UserImage src={userInfo?.data().photoURL} alt="profile" />
+                </ProfileImageContainer>
+              </Link>
 
-        <CommentButton>Switch</CommentButton>
-      </PostHeader>
+              <Names>
+                <AuthorName className="thick">
+                  <Link to={`/${currentUser.displayName}`}>
+                    {userInfo?.data().username}{' '}
+                  </Link>
+                </AuthorName>
+                <AuthorName className="secondary">
+                  <Link to={`/${currentUser.displayName}`}>
+                    {userInfo?.data().fullName}{' '}
+                  </Link>
+                </AuthorName>
+              </Names>
+            </PostHeaderDetails>
+
+            <CommentButton>Switch</CommentButton>
+          </PostHeader>
+        </>
+      )}
 
       <AuthorName className="secondary suggestion">
         Suggestions for you
       </AuthorName>
 
-      <PostHeader className="small">
-        <PostHeaderDetails>
-          <UserImage className="mini" src={blankProfile} alt="profile" />
-          <Names>
-            <AuthorName className="thick">brake_emi</AuthorName>
-            <AuthorName className="secondary small">
-              Suggested for you
-            </AuthorName>
-          </Names>
-        </PostHeaderDetails>
+      {recommendedUsers?.map((user) => (
+        <PostHeader className="small">
+          <PostHeaderDetails>
+            <Link to={`/${user.id}`}>
+              <UserImage
+                className="mini"
+                src={user.data().photoURL}
+                alt="profile"
+              />
+            </Link>
+            <Names>
+              <AuthorName className="thick">
+                <Link to={`/${user.id}`}> {user.data().username} </Link>
+              </AuthorName>
+              <AuthorName className="secondary small">
+                Suggested for you
+              </AuthorName>
+            </Names>
+          </PostHeaderDetails>
 
-        <CommentButton>Follow</CommentButton>
-      </PostHeader>
-
-      <PostHeader className="small">
-        <PostHeaderDetails>
-          <UserImage className="mini" src={blankProfile} alt="profile" />
-          <Names>
-            <AuthorName className="thick">brake_emi</AuthorName>
-            <AuthorName className="secondary small">
-              Suggested for you
-            </AuthorName>
-          </Names>
-        </PostHeaderDetails>
-
-        <CommentButton>Follow</CommentButton>
-      </PostHeader>
-
-      <PostHeader className="small">
-        <PostHeaderDetails>
-          <UserImage className="mini" src={blankProfile} alt="profile" />
-          <Names>
-            <AuthorName className="thick">brake_emi</AuthorName>
-            <AuthorName className="secondary small">
-              Suggested for you
-            </AuthorName>
-          </Names>
-        </PostHeaderDetails>
-
-        <CommentButton>Follow</CommentButton>
-      </PostHeader>
-
-      <PostHeader className="small">
-        <PostHeaderDetails>
-          <UserImage className="mini" src={blankProfile} alt="profile" />
-          <Names>
-            <AuthorName className="thick">brake_emi</AuthorName>
-            <AuthorName className="secondary small">
-              Suggested for you
-            </AuthorName>
-          </Names>
-        </PostHeaderDetails>
-
-        <CommentButton>Follow</CommentButton>
-      </PostHeader>
-
-      <PostHeader className="small">
-        <PostHeaderDetails>
-          <UserImage className="mini" src={blankProfile} alt="profile" />
-          <Names>
-            <AuthorName className="thick">brake_emi</AuthorName>
-            <AuthorName className="secondary small">
-              Suggested for you
-            </AuthorName>
-          </Names>
-        </PostHeaderDetails>
-
-        <CommentButton>Follow</CommentButton>
-      </PostHeader>
+          <CommentButton>
+            <Link to={`/${user.id}`}>Follow</Link>
+          </CommentButton>
+        </PostHeader>
+      ))}
     </SidebarContainer>
   );
 }
