@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 
+import { useAuth } from '../contexts/AuthContext';
+
 import { getAllPost } from '../adapters/post';
+import { getFollowing } from '../adapters/follow';
+
+import { getExplorePost } from '../utils/getPersonalisedPost';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -14,17 +19,21 @@ function Explore({ match }) {
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState();
 
+  const { currentUser } = useAuth();
+
   useEffect(() => {
     setLoading(true);
-    getAllPost()
-      .then((snapshot) => {
-        setPosts(snapshot.docs);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
+    getFollowing(currentUser.displayName).then((following) => {
+      getAllPost()
+        .then((posts) => {
+          setPosts(getExplorePost(posts.docs, following.docs, currentUser));
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
+    });
   }, []);
 
   return (
