@@ -25,6 +25,8 @@ export function AuthProvider({ children }) {
         .then((ref) => {
           ref.user.updateProfile({
             displayName: slug,
+            photoURL:
+              'https://firebasestorage.googleapis.com/v0/b/instagram-clone-66f7a.appspot.com/o/BlankImage.jpg?alt=media&token=c4d05e11-5df1-4a8a-ba8a-9a6f0cd36c4b',
           });
           db.collection('userProfile')
             .doc(slug)
@@ -33,7 +35,8 @@ export function AuthProvider({ children }) {
               email,
               fullName,
               username,
-              photoURL: '',
+              photoURL:
+                'https://firebasestorage.googleapis.com/v0/b/instagram-clone-66f7a.appspot.com/o/BlankImage.jpg?alt=media&token=c4d05e11-5df1-4a8a-ba8a-9a6f0cd36c4b',
               bio: '',
               website: '',
               phone: '',

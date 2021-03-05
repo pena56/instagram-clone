@@ -1,0 +1,37 @@
+[debug] [2021-03-05T11:01:08.413Z] ----------------------------------------------------------------------
+[debug] [2021-03-05T11:01:08.418Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ogbop\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-03-05T11:01:08.418Z] CLI Version:   8.7.0
+[debug] [2021-03-05T11:01:08.418Z] Platform:      win32
+[debug] [2021-03-05T11:01:08.419Z] Node Version:  v12.18.3
+[debug] [2021-03-05T11:01:08.468Z] Time:          Fri Mar 05 2021 12:01:08 GMT+0100 (West Africa Standard Time)
+[debug] [2021-03-05T11:01:08.468Z] ----------------------------------------------------------------------
+[debug] [2021-03-05T11:01:08.468Z] 
+[debug] [2021-03-05T11:01:08.589Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-03-05T11:01:08.591Z] > authorizing via signed-in user
+[debug] [2021-03-05T11:01:08.591Z] [iam] checking project instagram-clone-66f7a for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-03-05T11:01:08.598Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-03-05T11:01:08.598Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-03-05T11:01:11.520Z] <<< HTTP RESPONSE 200 {"date":"Fri, 05 Mar 2021 11:01:10 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-05T11:01:11.583Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/instagram-clone-66f7a:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-03-05T11:01:22.829Z] [iam] error while checking permissions, command may fail: FirebaseError: Server Error. getaddrinfo ENOTFOUND cloudresourcemanager.googleapis.com
+[debug] [2021-03-05T11:01:22.831Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/instagram-clone-66f7a  
+ 
+[debug] [2021-03-05T11:01:29.972Z] Server Error. getaddrinfo ENOTFOUND firebase.googleapis.com
+[debug] [2021-03-05T11:01:30.028Z] FirebaseError: Server Error. getaddrinfo ENOTFOUND firebase.googleapis.com
+    at Request._callback (C:\Users\ogbop\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:32:31)
+    at self.callback (C:\Users\ogbop\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:185:22)
+    at Request.emit (events.js:315:20)
+    at Request.EventEmitter.emit (domain.js:483:12)
+    at Request.onRequestError (C:\Users\ogbop\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:877:8)
+    at ClientRequest.emit (events.js:327:22)
+    at ClientRequest.EventEmitter.emit (domain.js:483:12)
+    at TLSSocket.socketErrorListener (_http_client.js:426:9)
+    at TLSSocket.emit (events.js:315:20)
+    at TLSSocket.EventEmitter.emit (domain.js:483:12)
+    at emitErrorNT (internal/streams/destroy.js:92:8)
+    at emitErrorAndCloseNT (internal/streams/destroy.js:60:3)
+    at processTicksAndRejections (internal/process/task_queues.js:84:21)
+[error] 
+[error] Error: Failed to get Firebase project instagram-clone-66f7a. Please make sure the project exists and your account has permission to access it.

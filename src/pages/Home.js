@@ -74,8 +74,8 @@ function Home({ match }) {
               <>
                 <img src={emptyImage} alt="empty" />
                 <h3 style={{ textAlign: 'center' }}>
-                  You are not following anyone yet? See the suggestions on the
-                  left.
+                  You are not following anyone yet? See the suggestions on who
+                  to follow on the right.
                 </h3>
               </>
             )}

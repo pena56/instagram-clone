@@ -21,13 +21,13 @@ export const getExplorePost = (postList, followingList, currentUser) => {
     if (post.data().UID == currentUser.displayName) {
       return;
     }
-    followingList.map((obj) => {
-      if (obj.data().following === post.data().UID) {
+    for (let i = 0; i < followingList.length; i++) {
+      if (followingList[i].data().following === post.data().UID) {
         return;
-      } else {
-        return newPostList.push(post);
       }
-    });
+    }
+    return newPostList.push(post);
   });
+  console.log(newPostList);
   return newPostList;
 };

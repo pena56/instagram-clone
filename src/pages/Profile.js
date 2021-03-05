@@ -80,6 +80,7 @@ function Profile({ match }) {
             following={following}
             followers={followers}
             userProfile={profileData}
+            userPosts={userPosts}
           />
           <ProfilePost posts={userPosts} />
         </>

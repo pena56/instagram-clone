@@ -33,7 +33,13 @@ import { follow, unfollow } from '../adapters/follow';
 
 import blankProfile from '../images/BlankImage.jpg';
 
-function ProfileBanner({ userProfile, followers, following, isFollowing }) {
+function ProfileBanner({
+  userProfile,
+  followers,
+  following,
+  isFollowing,
+  userPosts,
+}) {
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [showUnfollow, setShowUnfollow] = useState(false);
@@ -123,7 +129,7 @@ function ProfileBanner({ userProfile, followers, following, isFollowing }) {
         </ProfileMeta>
         <Activity>
           <ActivityText>
-            <ActivityNumber>0</ActivityNumber> posts
+            <ActivityNumber>{userPosts?.length}</ActivityNumber> posts
           </ActivityText>
           <ActivityText>
             <ActivityNumber>{followers.length}</ActivityNumber> followers
